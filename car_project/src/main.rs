@@ -4,17 +4,24 @@ struct Car {
     year: u32
 }
 
-fn describe_car(car_struct: &Car) {
-    println!("This is a {} {} {}", car_struct.year, car_struct.make, car_struct.model)
+impl Car {
+    fn new(make: String, model: String, year: u32) -> Car {
+        Car {
+            make,
+            model,
+            year
+        }
+    }
+
+    fn describe_car(&self) {
+        println!("This is a {} {} {}", self.year, self.make, self.model)
+    }
 }
 
 
+
 fn main() {
-    let car_struct = Car {
-        make: String::from("Ford"), 
-        model: String::from("Mustang"), 
-        year: 2022
-    };
-    describe_car(&car_struct)
+    let car_struct = Car::new(String::from("Ford"), String::from("Mustang"), 2022);
+    car_struct.describe_car()
 }
 
